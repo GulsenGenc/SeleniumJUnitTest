@@ -36,7 +36,7 @@ public class C04_IFrame {
 
         //      ○ “An IFrame containing….” textinin erisilebilir oldugunu test edin
         //      ve  konsolda    yazdirin.
-        WebElement baslikElementi=driver.findElement(By.xpath("//h3"));
+        WebElement baslikElementi = driver.findElement(By.xpath("//h3"));
         Assert.assertTrue(baslikElementi.isEnabled());
         System.out.println(baslikElementi.getText());
 
@@ -46,13 +46,21 @@ public class C04_IFrame {
         // textbox'in aslinda bir IFrame icerisinde oldugunu gorduk
         // bu durumda once iframe'i locate edip
         // switchTo() ile o iFrame'e gecmeliyiz
-        WebElement iFrameElementi= driver.findElement(By.id("mce_0_ifr"));
+        WebElement iFrameElementi = driver.findElement(By.id("mce_0_ifr"));
         driver.switchTo().frame(iFrameElementi);
-        WebElement textKutusu=driver.findElement(By.xpath("//body[@id='tinymce']"));
+        WebElement textKutusu = driver.findElement(By.xpath("//body[@id='tinymce']"));
         textKutusu.clear();
         textKutusu.sendKeys("hello word");
 
-
+        //      ○ TextBox’in altinda bulunan “Elemental Selenium”
+        //      linkinin textinin gorunur oldugunu  dogrulayin ve  konsolda yazdirin.
+        // link yazi elementini dogru locate etmemize ragmen yazdirmadi
+        // cunku yukarida iFrame'e gecis yapmistik
+        // once oradan cikmamiz lazim
+        driver.switchTo().defaultContent();
+        WebElement linkYazıElementi = driver.findElement(By.linkText("Elemental Selenium"));
+        Assert.assertTrue(linkYazıElementi.isDisplayed());
+        System.out.println(linkYazıElementi.getText());
     }
 
 }
