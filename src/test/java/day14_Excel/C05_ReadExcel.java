@@ -5,14 +5,11 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.junit.Test;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class C04_ReadExcel {
+public class C05_ReadExcel {
     @Test
-    public void readExcel() throws IOException {
-
-
+    public void readExcelTesti() throws IOException {
         // 7. Dosya yolunu bir String degiskene atayalim
         String dosyaYolu = "src/resources/ulkeler.xlsx";
         //8. FileInputStream objesi olusturup,parametre olarak dosya yolunu girelim
@@ -20,15 +17,12 @@ public class C04_ReadExcel {
         //9. Workbook objesi olusturalim,parameter olarak fileInputStream objesini girelim
         Workbook workbook = WorkbookFactory.create(fis);
 
-        //ingilizce başkentler sütununu yazdıralım
-        int sonSatır = workbook.getSheet("Sayfa1").getLastRowNum();
-        System.out.println(sonSatır);
-        String satırdakiData = " ";
+        //sayfa2 ye gidip kullanılan satır sayısının 9 oldugunu test edin
+        int sonSatırIndeksı=workbook
+                .getSheet("Sayfa2")
+                .getLastRowNum();
+        int expectedSatırSayısı=9;
 
-        for (int i = 0; i <= sonSatır; i++) {
-            satırdakiData = C03_readExcel.banaDataGetir(i, 1);
-            System.out.println(satırdakiData);
-        }
 
     }
 }
