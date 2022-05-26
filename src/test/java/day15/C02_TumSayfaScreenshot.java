@@ -19,11 +19,13 @@ public class C02_TumSayfaScreenshot extends TestBase {
         driver.get("https://www.amazon.com");
 
         TakesScreenshot ts= (TakesScreenshot) driver;
-        LocalDateTime date= LocalDateTime.now();
-        File tumSayfaResim=new File("target/ekranGoruntuleri/"+date+".jpeg");
 
-        File gecıcıResım=ts.getScreenshotAs(OutputType.FILE);
-        FileUtils.copyFile(gecıcıResım,tumSayfaResim);
+        LocalDateTime date=LocalDateTime.now();
+        DateTimeFormatter dtf= DateTimeFormatter.ofPattern("YYYYMMddHHmmss");
+        String tarih = date.format(dtf);
 
+        File tumSayfaResim= new File("target/ekranGoruntuleri/tumSayfa"+tarih+".jpeg");
+        File geciciDosya= ts.getScreenshotAs(OutputType.FILE);
+        FileUtils.copyFile(geciciDosya,tumSayfaResim);
     }
 }
